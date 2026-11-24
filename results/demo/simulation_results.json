@@ -1,0 +1,26 @@
+[
+  {
+    "gene": "Kcnc1",
+    "channel": "Kv3",
+    "conductance_multiplier": 1.5,
+    "baseline_firing_rate_hz": 2.0,
+    "perturbed_firing_rate_hz": 2.0,
+    "baseline_ap_width_ms": 7.0,
+    "perturbed_ap_width_ms": 4.2,
+    "firing_rate_shift_direction": "no_change",
+    "ap_width_shift_direction": "decrease",
+    "note": "Biophysical plausibility screen only -- not validation of any statistical attribution result."
+  },
+  {
+    "gene": "Scn1a",
+    "channel": "Nav",
+    "conductance_multiplier": 1.5,
+    "baseline_firing_rate_hz": 2.0,
+    "perturbed_firing_rate_hz": 2.0,
+    "baseline_ap_width_ms": 7.0,
+    "perturbed_ap_width_ms": 7.1000000000000005,
+    "firing_rate_shift_direction": "no_change",
+    "ap_width_shift_direction": "increase",
+    "note": "Biophysical plausibility screen only -- not validation of any statistical attribution result."
+  }
+]

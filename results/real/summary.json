@@ -1,0 +1,47 @@
+{
+  "status": "real_data_ephys_only_arm",
+  "arms_run": [
+    "human_ephys_only_cross_species_comparison"
+  ],
+  "arms_blocked": {
+    "mouse_gene_attribution": "No real, honestly-licensed linked mouse transcriptome was obtained: NeMO dat-m2kd56v (transcriptome) now shows 'No license listed' on re-check (2026-11-23), and no confirmed cell-linked accession was found for this cohort during prior project scoping. Gene expression input is therefore absent and build_attribution_table()/stability selection/attribution models were never invoked on real data."
+  },
+  "n_cells_total": 526,
+  "n_cells_mouse": 522,
+  "n_cells_human": 4,
+  "n_donors_mouse": 263,
+  "n_donors_human": 4,
+  "n_cells_cross_species_arm": 454,
+  "subclass_counts": {
+    "Pvalb": 201,
+    "Sst": 166,
+    "Vip": 155,
+    "unknown": 4
+  },
+  "per_species_mean_ephys_features": {
+    "rheobase_pA": {
+      "human": 150.0,
+      "mouse": 158.7444
+    },
+    "ap_width_ms": {
+      "human": 0.625,
+      "mouse": 1.5133
+    },
+    "input_resistance_MOhm": {
+      "human": 149.5787,
+      "mouse": 242.0029
+    },
+    "adaptation_ratio": {
+      "human": 0.0773,
+      "mouse": 0.0498
+    }
+  },
+  "donor_grouped_split_check": {
+    "ran_on_real_donor_ids": true,
+    "no_leakage_confirmed": true,
+    "error": null,
+    "n_train_donors": 186,
+    "n_test_donors": 62
+  },
+  "note": "This summary describes a REAL-DATA run: mouse ephys+metadata from the Allen Institute Cell Types Database REST API (Gouwens 2020 Cre-line overlapping cohort), human ephys from a real downloaded subset of DANDI:000636 (CC-BY-4.0), features extracted with ipfx. No synthetic or substituted data is included. This is an ephys-ONLY phenotypic comparison across species; it makes no causal or gene-attribution claims, and the mouse gene-attribution arm was not run (see arms_blocked above) due to lack of accessible, properly licensed linked transcriptome data."
+}

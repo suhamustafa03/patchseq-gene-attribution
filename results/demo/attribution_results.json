@@ -1,0 +1,80 @@
+[
+  {
+    "model": "ridge",
+    "target": "rheobase_pA",
+    "mean_r2": 0.4639,
+    "fold_r2": [
+      0.4474,
+      0.3391,
+      0.3798,
+      0.5376,
+      0.6156
+    ],
+    "n_folds": 5
+  },
+  {
+    "model": "lasso",
+    "target": "rheobase_pA",
+    "mean_r2": 0.4736,
+    "fold_r2": [
+      0.4544,
+      0.3533,
+      0.4005,
+      0.5416,
+      0.6184
+    ],
+    "n_folds": 5
+  },
+  {
+    "model": "reduced_rank_svd",
+    "target": "rheobase_pA",
+    "mean_r2": 0.4619,
+    "fold_r2": [
+      0.4089,
+      0.4393,
+      0.3988,
+      0.5299,
+      0.5327
+    ],
+    "n_folds": 5
+  },
+  {
+    "model": "ridge",
+    "target": "ap_width_ms",
+    "mean_r2": 0.5534,
+    "fold_r2": [
+      0.6208,
+      0.7184,
+      0.2981,
+      0.5848,
+      0.5447
+    ],
+    "n_folds": 5
+  },
+  {
+    "model": "lasso",
+    "target": "ap_width_ms",
+    "mean_r2": 0.2783,
+    "fold_r2": [
+      0.2274,
+      0.2537,
+      0.2778,
+      0.306,
+      0.3264
+    ],
+    "n_folds": 5
+  },
+  {
+    "model": "reduced_rank_svd",
+    "target": "ap_width_ms",
+    "mean_r2": 0.5315,
+    "fold_r2": [
+      0.5141,
+      0.667,
+      0.3268,
+      0.5208,
+      0.629
+    ],
+    "n_folds": 5
+  }
+]

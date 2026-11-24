@@ -1,0 +1,15 @@
+# Core (required for qc/features/confounders/cv/attribution/stability + tests)
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+pytest>=7.4
+
+# Optional: only needed for src/patchseq_genes/simulation.py's Brian2
+# plausibility screen; everything else in the pipeline runs without it.
+# brian2>=2.5
+
+# Optional: only needed for data/download_mouse_gouwens.py
+# allensdk>=2.16
+
+# Optional: only needed for data/download_human_dandi000636.py
+# dandi>=0.60

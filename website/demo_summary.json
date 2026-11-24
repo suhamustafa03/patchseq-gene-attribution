@@ -1,0 +1,35 @@
+{
+  "status": "demo_fixture_only",
+  "input_dir": "demo_fixture",
+  "n_cells_total": 400,
+  "n_cells_mouse": 300,
+  "n_cells_human": 100,
+  "n_cells_attribution_arm": 300,
+  "n_cells_cross_species_arm": 400,
+  "n_genes": 24,
+  "attribution_targets": [
+    "rheobase_pA",
+    "ap_width_ms"
+  ],
+  "stable_gene_min_count_threshold": 2,
+  "n_stable_genes_total": 1,
+  "result_is_null_or_inconclusive_for_any_target": true,
+  "stability_by_target": {
+    "rheobase_pA": {
+      "n_stable_genes": 0,
+      "stable_genes": [],
+      "is_null_or_inconclusive": true
+    },
+    "ap_width_ms": {
+      "n_stable_genes": 1,
+      "stable_genes": [
+        "Pvalb"
+      ],
+      "is_null_or_inconclusive": true
+    }
+  },
+  "simulation": {
+    "n_genes_screened": 2
+  },
+  "note": "This summary describes whatever data was in --input. If that was demo_fixture/, these numbers are 100% synthetic and validate the pipeline code only, not biology."
+}
