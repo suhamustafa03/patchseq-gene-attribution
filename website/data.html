@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{if(sessionStorage.getItem('pq_entered')==='1'){document.documentElement.classList.add('entered')}}catch(e){}</script>
+<title>Data &amp; Licensing | Patch-seq Gene Attribution</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="opening" aria-labelledby="opening-title">
+  <div class="opening-scene" aria-hidden="true">
+    <svg viewBox="0 0 900 420" preserveAspectRatio="xMidYMid meet" focusable="false">
+      <defs>
+        <radialGradient id="glowMouse" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#5a9bd8" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#5a9bd8" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glowHuman" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#8fb8e8" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#8fb8e8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <g class="scene-figure scene-mouse">
+        <ellipse cx="150" cy="235" rx="95" ry="78" fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle cx="75" cy="160" r="30" fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle cx="205" cy="150" r="33" fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle class="brain-glow" cx="160" cy="222" r="30" fill="url(#glowMouse)"/>
+        <ellipse cx="160" cy="222" rx="42" ry="32" fill="none" stroke="#5a9bd8" stroke-width="1.2" opacity="0.7"/>
+      </g>
+
+      <g class="scene-figure scene-human">
+        <path d="M 700 130 Q 775 122, 792 190 Q 800 230, 778 265 Q 765 290, 735 286 L 728 318 Q 722 330, 708 324 L 702 290 Q 676 278, 673 238 Q 670 180, 700 130 Z"
+          fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle class="brain-glow" cx="737" cy="210" r="32" fill="url(#glowHuman)"/>
+        <ellipse cx="737" cy="210" rx="44" ry="50" fill="none" stroke="#8fb8e8" stroke-width="1.2" opacity="0.7"/>
+      </g>
+
+      <g class="scene-pathway" fill="none" stroke="#4a6a93" stroke-width="1.3" opacity="0.55">
+        <path d="M 200 222 C 320 180, 420 180, 450 210" />
+        <path d="M 200 222 C 320 260, 420 260, 450 230" />
+        <path d="M 695 210 C 580 180, 480 180, 450 210" />
+        <path d="M 695 210 C 580 250, 480 250, 450 230" />
+      </g>
+
+      <g class="scene-particles">
+        <circle class="particle p1" r="3" fill="#bcd6f2"/>
+        <circle class="particle p2" r="3" fill="#bcd6f2"/>
+        <circle class="particle p3" r="3" fill="#bcd6f2"/>
+      </g>
+
+      <g class="scene-wave">
+        <polyline class="wave-line" points="400,222 415,222 420,200 428,245 434,180 440,222 460,222 466,195 472,250 478,222 500,222"
+          fill="none" stroke="#bcd6f2" stroke-width="2"/>
+      </g>
+    </svg>
+  </div>
+
+  <p class="opening-sr-desc">
+    An atmospheric, slowly animated scene: a mouse silhouette on the left and a
+    human silhouette on the right, each with a softly glowing brain region,
+    connected by faint neural-pathway lines. Small points of light drift along
+    these lines toward the center, where they resolve into a simple electrical
+    waveform. This is a conceptual illustration of the project's guiding
+    question -- it does not depict any measured gene, signal, or result.
+  </p>
+
+  <div class="opening-content">
+    <h1 id="opening-title">From genes to firing</h1>
+    <p class="opening-sub">An exploratory feasibility study of interneurons, gene expression, and electrical activity &mdash; across mouse and human.</p>
+    <a class="cta" href="#content">Look into the project</a>
+  </div>
+</section>
+
+<div class="site-wrap">
+<header class="site-header">
+  <div class="inner">
+    <a href="index.html"><strong>Patch-seq Gene Attribution</strong></a>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="methods.html">Methods</a>
+      <a href="data.html">Data &amp; Licensing</a>
+      <a href="results.html">Results</a>
+      <a href="limitations.html">Limitations</a>
+      <a href="reproducibility.html">Reproducibility</a>
+      <a href="references.html">References</a>
+    </nav>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+
+<h1>Data &amp; Licensing</h1>
+
+<p>Only two datasets are in scope for this project. No raw data is
+downloaded or committed as part of building this repository; see
+<code>data/README.md</code> for full provenance notes.</p>
+
+<div class="table-scroll"><table>
+<thead>
+<tr><th>Dataset</th><th>Species / content</th><th>Scale</th><th>License</th><th>Link</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>Gouwens et al. 2020 Patch-seq cohort</td>
+  <td>Mouse; ephys + transcriptome + partial morphology, linked per cell</td>
+  <td>n=4,270 interneurons</td>
+  <td>CC-BY-4.0 (parent NeMO collection)</td>
+  <td><a href="https://assets.nemoarchive.org/dat-m2kd56v">NeMO dat-m2kd56v</a></td>
+</tr>
+<tr>
+  <td>DANDI:000636</td>
+  <td>Human; electrophysiology only -- no transcriptome, no confirmed subclass labels</td>
+  <td>109 subjects / 616 cells</td>
+  <td>CC-BY-4.0 (confirmed via raw DANDI API metadata)</td>
+  <td><a href="https://dandiarchive.org/dandiset/000636">dandiarchive.org/dandiset/000636</a></td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="callout">
+<strong>No cross-species gene attribution.</strong> This project does not
+use any human transcriptomic data. The human arm is restricted to an
+ephys-only phenotypic comparison across species; it is never merged with
+mouse gene expression.
+</div>
+
+<h2>Real-data pull (2026-11-23)</h2>
+<p>
+A real (non-synthetic) data pull was performed; full provenance is in
+<code>docs/DATA_MANIFEST.md</code>. Summary:
+</p>
+<div class="table-scroll"><table>
+<thead>
+<tr><th>Dataset</th><th>What was obtained</th><th>License re-check</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>DANDI:000636 (human ephys)</td>
+  <td>Real subset: 20 of 706 NWB files (~597 MB of the 24.5 GB dandiset), 20 distinct subjects, version <code>0.241120.0510</code></td>
+  <td>CC-BY-4.0, re-confirmed 2026-11-23</td>
+</tr>
+<tr>
+  <td>Allen Cell Types Database (mouse ephys + metadata, Gouwens-overlapping Cre lines)</td>
+  <td>Real: 522 cells, 263 donors, via the Allen Brain Map REST API (used in place of <code>allensdk</code>, which does not install on Python 3.13 -- see manifest)</td>
+  <td>NeMO <code>dat-7uhwm74</code> (ephys/morphology): CC BY 4.0, re-confirmed</td>
+</tr>
+<tr>
+  <td>NeMO <code>dat-m2kd56v</code> (mouse transcriptome)</td>
+  <td><strong>NOT downloaded.</strong> Blocked.</td>
+  <td>Re-check 2026-11-23: page now shows <strong>"No license listed"</strong> -- a change from the prior CC-BY-4.0 status, so it was not used, per this project's own license stop-condition.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="callout">
+<strong>Consequence:</strong> because the mouse transcriptome source is
+currently blocked on licensing, the mouse gene-attribution arm could not
+be run on real data. The human ephys-only cross-species comparison arm
+(which needs no transcriptome) <strong>was</strong> run on this real data
+-- see <a href="results.html">Results</a>.
+</div>
+
+<h2>Possible future upgrade (not in use)</h2>
+<p>
+<strong>Lee, Dalley, et al. 2023</strong> (<em>Science</em> 382:eadf6484,
+n=778 human Patch-seq neurons with linked transcriptome) is the natural
+path to a true cross-species gene-attribution arm. Its exact data
+accession and data-specific license have <strong>not been confirmed</strong>
+as of this writing. It is noted here only as a possible future upgrade --
+it is <strong>not</strong> used anywhere in this codebase or on this site.
+</p>
+
+</main>
+<footer>
+  Source: this repository's <code>data/README.md</code>.
+</footer>
+</div>
+<script>
+try {
+  var cta = document.querySelector('.opening .cta');
+  if (cta) {
+    cta.addEventListener('click', function () {
+      try { sessionStorage.setItem('pq_entered', '1'); } catch (e) {}
+    });
+  }
+} catch (e) {}
+</script>
+</body>
+</html>

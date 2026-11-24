@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{if(sessionStorage.getItem('pq_entered')==='1'){document.documentElement.classList.add('entered')}}catch(e){}</script>
+<title>Candidate-Gene Attribution: Mouse Interneuron Patch-seq</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="opening" aria-labelledby="opening-title">
+  <div class="opening-scene" aria-hidden="true">
+    <svg viewBox="0 0 900 420" preserveAspectRatio="xMidYMid meet" focusable="false">
+      <defs>
+        <radialGradient id="glowMouse" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#5a9bd8" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#5a9bd8" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glowHuman" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#8fb8e8" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#8fb8e8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- mouse silhouette -->
+      <g class="scene-figure scene-mouse">
+        <ellipse cx="150" cy="235" rx="95" ry="78" fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle cx="75" cy="160" r="30" fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle cx="205" cy="150" r="33" fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle class="brain-glow" cx="160" cy="222" r="30" fill="url(#glowMouse)"/>
+        <ellipse cx="160" cy="222" rx="42" ry="32" fill="none" stroke="#5a9bd8" stroke-width="1.2" opacity="0.7"/>
+      </g>
+
+      <!-- human silhouette (profile) -->
+      <g class="scene-figure scene-human">
+        <path d="M 700 130 Q 775 122, 792 190 Q 800 230, 778 265 Q 765 290, 735 286 L 728 318 Q 722 330, 708 324 L 702 290 Q 676 278, 673 238 Q 670 180, 700 130 Z"
+          fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle class="brain-glow" cx="737" cy="210" r="32" fill="url(#glowHuman)"/>
+        <ellipse cx="737" cy="210" rx="44" ry="50" fill="none" stroke="#8fb8e8" stroke-width="1.2" opacity="0.7"/>
+      </g>
+
+      <!-- neural pathway: branching lines between the two glows -->
+      <g class="scene-pathway" fill="none" stroke="#4a6a93" stroke-width="1.3" opacity="0.55">
+        <path d="M 200 222 C 320 180, 420 180, 450 210" />
+        <path d="M 200 222 C 320 260, 420 260, 450 230" />
+        <path d="M 695 210 C 580 180, 480 180, 450 210" />
+        <path d="M 695 210 C 580 250, 480 250, 450 230" />
+      </g>
+
+      <!-- traveling particles along the pathway -->
+      <g class="scene-particles">
+        <circle class="particle p1" r="3" fill="#bcd6f2"/>
+        <circle class="particle p2" r="3" fill="#bcd6f2"/>
+        <circle class="particle p3" r="3" fill="#bcd6f2"/>
+      </g>
+
+      <!-- resolving waveform at center -->
+      <g class="scene-wave">
+        <polyline class="wave-line" points="400,222 415,222 420,200 428,245 434,180 440,222 460,222 466,195 472,250 478,222 500,222"
+          fill="none" stroke="#bcd6f2" stroke-width="2"/>
+      </g>
+    </svg>
+  </div>
+
+  <p class="opening-sr-desc">
+    An atmospheric, slowly animated scene: a mouse silhouette on the left and a
+    human silhouette on the right, each with a softly glowing brain region,
+    connected by faint neural-pathway lines. Small points of light drift along
+    these lines toward the center, where they resolve into a simple electrical
+    waveform. This is a conceptual illustration of the project's guiding
+    question -- it does not depict any measured gene, signal, or result.
+  </p>
+
+  <div class="opening-content">
+    <h1 id="opening-title">From genes to firing</h1>
+    <p class="opening-sub">An exploratory feasibility study of interneurons, gene expression, and electrical activity &mdash; across mouse and human.</p>
+    <a class="cta" href="#content">Look into the project</a>
+  </div>
+</section>
+
+<div class="site-wrap">
+<header class="site-header">
+  <div class="inner">
+    <a href="index.html"><strong>Patch-seq Gene Attribution</strong></a>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="methods.html">Methods</a>
+      <a href="data.html">Data &amp; Licensing</a>
+      <a href="results.html">Results</a>
+      <a href="limitations.html">Limitations</a>
+      <a href="reproducibility.html">Reproducibility</a>
+      <a href="references.html">References</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content" tabindex="-1">
+<div class="hero">
+
+<p><span class="status-line">Exploratory feasibility study &mdash; research continues while transcriptomic data-use permissions are clarified.</span></p>
+
+<h2>The research question</h2>
+
+<p class="lede">
+Among genes expressed in mouse interneurons, which track how they fire,
+and does that make biophysical sense? This project is building a pipeline
+to find candidate genes whose expression statistically tracks
+electrophysiological differences in mouse cortical interneurons, after
+controlling for subclass and donor, and to check whether those candidates
+are biophysically plausible against known ion-channel function. That
+analysis is distinct from prior cross-modal classification and
+mouse-to-human transfer-learning work &mdash; but it has not yet run on
+real transcriptomic data, for reasons explained below.
+</p>
+
+<figure class="species-hero">
+<svg viewBox="0 0 760 320" role="img" aria-labelledby="species-title species-desc">
+  <title id="species-title">Conceptual illustration: gene expression to electrical firing, mouse and human</title>
+  <desc id="species-desc">A conceptual, non-data illustration showing a mouse on the left and a human on the right, each with a highlighted brain region, connected by a pathway of gene-expression markers leading to a recorded voltage trace. No genes, markers, or traces shown here represent actual measurements.</desc>
+
+  <!-- mouse -->
+  <g class="hero-stage" tabindex="0" focusable="true">
+    <title>Mouse cortical interneurons: the real-data and synthetic-demo work in this project is mouse-centered.</title>
+    <ellipse cx="110" cy="150" rx="70" ry="58" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+    <circle cx="55" cy="95" r="20" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+    <circle cx="150" cy="90" r="22" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+    <ellipse class="hl" cx="118" cy="140" rx="34" ry="26" fill="none" stroke="#1f5fa8" stroke-width="2"/>
+    <circle cx="70" cy="155" r="2.6" fill="#1a1a1a"/>
+    <path d="M60,170 Q75,180 95,172" fill="none" stroke="#1a1a1a" stroke-width="1.6"/>
+    <text x="55" y="235" class="species-label" text-anchor="middle">Mouse</text>
+    <text x="55" y="250" class="species-sub" text-anchor="middle">cortical interneurons</text>
+  </g>
+
+  <!-- gene markers -->
+  <g class="hero-stage" tabindex="0" focusable="true">
+    <title>Gene-expression markers: a conceptual illustration of measured transcript levels, not real gene names or values.</title>
+    <rect x="248" y="110" width="14" height="14" rx="2" fill="#1f5fa8"/>
+    <rect x="248" y="134" width="20" height="14" rx="2" fill="#1f5fa8"/>
+    <rect x="248" y="158" width="9" height="14" rx="2" fill="#1f5fa8"/>
+    <rect x="248" y="182" width="16" height="14" rx="2" fill="#1f5fa8"/>
+    <text x="240" y="95" class="species-sub" text-anchor="start">Gene-expression markers</text>
+    <text x="240" y="108" class="conceptual-tag" text-anchor="start">(conceptual illustration)</text>
+  </g>
+
+  <line x1="180" y1="150" x2="245" y2="150" stroke="#9fb8d6" stroke-width="2.5"/>
+  <line x1="300" y1="150" x2="345" y2="150" stroke="#9fb8d6" stroke-width="2.5"/>
+
+  <!-- neuron + voltage trace, shared pathway -->
+  <g class="hero-stage" tabindex="0" focusable="true">
+    <title>Statistical attribution and a biophysical plausibility check: this is the part of the pipeline tested only on synthetic data so far.</title>
+    <circle cx="380" cy="150" r="34" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+    <line x1="380" y1="116" x2="380" y2="76" stroke="#1a1a1a" stroke-width="2"/>
+    <polyline points="355,80 365,80 368,60 374,95 380,68 386,80 405,80"
+      fill="none" stroke="#1f5fa8" stroke-width="2"/>
+    <text x="380" y="205" class="species-label" text-anchor="middle">Candidate-gene</text>
+    <text x="380" y="220" class="species-sub" text-anchor="middle">attribution (tested on synthetic data)</text>
+  </g>
+
+  <line x1="414" y1="150" x2="460" y2="150" stroke="#9fb8d6" stroke-width="2.5"/>
+  <line x1="505" y1="150" x2="550" y2="150" stroke="#9fb8d6" stroke-width="2.5"/>
+
+  <!-- human -->
+  <g class="hero-stage" tabindex="0" focusable="true">
+    <title>Human cortical interneurons: only an ephys-only comparison has run on real human data so far, with n=4 usable cells.</title>
+    <path d="M 600 95 Q 660 90, 672 140 Q 678 170, 660 195 Q 650 215, 625 212 L 620 235 Q 615 245, 605 240 L 600 215 Q 580 205, 578 175 Q 576 130, 600 95 Z"
+      fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+    <ellipse class="hl" cx="628" cy="150" rx="32" ry="38" fill="none" stroke="#1f5fa8" stroke-width="2"/>
+    <circle cx="648" cy="160" r="2.6" fill="#1a1a1a"/>
+    <text x="628" y="268" class="species-label" text-anchor="middle">Human</text>
+    <text x="628" y="283" class="species-sub" text-anchor="middle">cortical interneurons (ephys-only, n=4)</text>
+  </g>
+
+  <text x="380" y="300" class="conceptual-tag" text-anchor="middle">Markers, neuron, and voltage trace are conceptual illustrations &mdash; not measured data.</text>
+</svg>
+<figcaption><strong>Conceptual illustration, not a data figure.</strong> The gene markers, neuron, and voltage trace are schematic; no real gene identities, expression levels, or recordings are depicted here. Hover or tab to each labeled region for what it represents.</figcaption>
+</figure>
+
+<div class="status-path">
+  <div class="step step-done">
+    <h3>Run on real data</h3>
+    <p>Quality control and donor-grouped cross-validation ran on real downloaded data. The resulting mouse&ndash;human electrophysiology comparison (450 mouse cells, 4 usable human cells) is preliminary and underpowered -- it does not establish a reliable species difference.</p>
+  </div>
+  <div class="step step-synthetic">
+    <h3>Tested on synthetic data</h3>
+    <p>Candidate-gene attribution, stability selection, and the biophysical plausibility simulation are implemented and pass their tests, but have only ever been exercised on a synthetic, clearly-labeled demo fixture -- not on real biology.</p>
+  </div>
+  <div class="step step-blocked">
+    <h3>Awaiting data permissions</h3>
+    <p>Real mouse gene-attribution and biophysical plausibility checks are blocked: the relevant NeMO transcriptomic dataset currently has no license listed. Research continues on verified, permitted data in the meantime.</p>
+  </div>
+</div>
+
+<div class="shown-grid">
+  <div class="shown-has">
+    <h3>What this project has shown</h3>
+    <ul>
+      <li>A tested, reproducible pipeline for gene-attribution, stability selection, and plausibility screening.</li>
+      <li>A working real-data QC and donor-grouped cross-validation workflow, run on real downloaded data.</li>
+      <li>A clear, honest map of exactly what's blocked and why.</li>
+    </ul>
+  </div>
+  <div class="shown-has-not">
+    <h3>What this project has not shown</h3>
+    <ul>
+      <li>No real candidate genes have been identified.</li>
+      <li>No reliable mouse&ndash;human electrophysiological difference (n=4 human cells).</li>
+      <li>No causal claim, and no completed gene-attribution study.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>How the method works</h2>
+<figure class="diagram-wrap">
+<svg viewBox="0 0 760 300" role="img" aria-labelledby="diagram-title diagram-desc">
+  <title id="diagram-title">From gene expression to firing behavior</title>
+  <desc id="diagram-desc">A simplified interneuron: dendrites carry marks representing measured gene-expression levels, the soma integrates them, and the axon ends in a recorded voltage trace shaped by ion-channel genes.</desc>
+
+  <!-- dendrites with expression marks -->
+  <g class="diagram-stage" tabindex="0" focusable="true">
+    <title>Stage 1: Patch-seq measures each cell's gene expression (transcriptome) directly after recording its electrical activity.</title>
+    <line x1="60" y1="150" x2="150" y2="90" stroke="#9fb8d6" stroke-width="3"/>
+    <line x1="60" y1="150" x2="150" y2="130" stroke="#9fb8d6" stroke-width="3"/>
+    <line x1="60" y1="150" x2="150" y2="170" stroke="#9fb8d6" stroke-width="3"/>
+    <line x1="60" y1="150" x2="150" y2="210" stroke="#9fb8d6" stroke-width="3"/>
+    <rect x="40" y="82" width="10" height="14" rx="2" fill="#1f5fa8"/>
+    <rect x="40" y="122" width="16" height="14" rx="2" fill="#1f5fa8"/>
+    <rect x="40" y="162" width="7" height="14" rx="2" fill="#1f5fa8"/>
+    <rect x="40" y="202" width="13" height="14" rx="2" fill="#1f5fa8"/>
+    <text x="30" y="60" class="stage-label">Gene expression</text>
+    <text x="30" y="75" class="stage-sub">(transcriptome, per cell)</text>
+  </g>
+
+  <!-- soma -->
+  <g class="diagram-stage" tabindex="0" focusable="true">
+    <title>Stage 2: A regularized regression model looks for genes whose expression statistically tracks the cell's measured electrical features, after accounting for cell subclass and donor.</title>
+    <circle cx="190" cy="150" r="42" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+    <text x="155" y="215" class="stage-label">Candidate-gene</text>
+    <text x="150" y="229" class="stage-sub">attribution (statistical)</text>
+  </g>
+
+  <!-- axon -->
+  <line x1="232" y1="150" x2="430" y2="150" stroke="#1a1a1a" stroke-width="2"/>
+
+  <!-- voltage trace -->
+  <g class="diagram-stage" tabindex="0" focusable="true">
+    <title>Stage 3: The recorded voltage trace -- rheobase, spike width, input resistance, adaptation -- is the electrophysiological phenotype being explained.</title>
+    <rect x="430" y="90" width="280" height="120" rx="8" fill="#fff" stroke="#ddd"/>
+    <polyline points="440,170 465,170 470,100 478,195 486,120 494,170 560,170 568,105 576,190 584,170 700,170"
+      fill="none" stroke="#1f5fa8" stroke-width="2.4"/>
+    <text x="440" y="75" class="stage-label">Measured electrophysiology</text>
+    <text x="440" y="229" class="stage-sub">rheobase, spike width, input resistance...</text>
+  </g>
+
+  <!-- plausibility loop -->
+  <path d="M 570 210 C 570 255, 230 255, 190 212" fill="none" stroke="#999" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#999"/>
+    </marker>
+  </defs>
+  <text x="300" y="268" class="stage-sub">biophysical plausibility check (simulation), not proof</text>
+</svg>
+<figcaption>A simplified Patch-seq cell. Hover, or tab to, each stage for a one-line explanation; see the annotations below for more detail.</figcaption>
+</figure>
+
+<div class="annotations">
+  <details>
+    <summary>Why measure gene expression and electrophysiology in the same cell?</summary>
+    <p>Patch-seq records a neuron's electrical activity with a patch-clamp
+    electrode, then extracts and sequences its RNA through the same pipette.
+    Because both measurements come from one cell, any statistical link
+    between a gene and an electrical feature is at least a same-cell
+    association -- not a guess from averaging across different cells.</p>
+  </details>
+  <details>
+    <summary>Why "candidate," not "cause"?</summary>
+    <p>A gene's expression can track an electrical feature for reasons that
+    have nothing to do with it causing that feature -- shared developmental
+    timing, cell subclass, or donor-level variation can all produce the same
+    statistical pattern. Stability selection and donor-grouped
+    cross-validation reduce, but do not eliminate, this risk.</p>
+  </details>
+  <details>
+    <summary>What does the plausibility loop actually check?</summary>
+    <p>For a handful of genes with a well-documented ion-channel role (e.g.
+    a potassium or sodium channel gene), a small conductance-based neuron
+    model is perturbed in the direction the expression difference implies,
+    and the resulting shift in firing behavior is compared -- in direction
+    only -- against what was measured. Agreement is weak supporting
+    evidence, not confirmation.</p>
+  </details>
+</div>
+
+<nav class="quick-links" aria-label="Project sections">
+  <a href="methods.html"><strong>Methods</strong><span>How each stage above is actually implemented and validated</span></a>
+  <a href="results.html"><strong>Results</strong><span>Real-data and synthetic-demo outputs, kept clearly separate</span></a>
+  <a href="data.html"><strong>Data &amp; Licensing</strong><span>Exact sources, sample counts, and what each license permits</span></a>
+  <a href="reproducibility.html"><strong>Reproducibility</strong><span>Commands to re-run the pipeline, on demo and real data</span></a>
+</nav>
+
+</div>
+
+<h2>Scope at a glance</h2>
+<ul>
+  <li><strong>Mouse arm (attribution):</strong> Gouwens et al. 2020 Patch-seq
+      cohort, n=4,270 interneurons, ephys + transcriptome + partial
+      morphology, linked per cell.</li>
+  <li><strong>Human arm (ephys-only comparison):</strong> DANDI:000636,
+      109 subjects / 616 cells, electrophysiology only -- no transcriptome,
+      no confirmed subclass labels.</li>
+  <li><strong>Not in scope yet:</strong> any cross-species gene
+      attribution, which would require a linked human transcriptome
+      (see Data &amp; Licensing for the Lee &amp; Dalley 2023 upgrade
+      path, not currently used).</li>
+</ul>
+
+<div class="callout">
+<strong>Where things actually stand (2026-11-23).</strong> A real,
+non-synthetic data pull and partial pipeline run has been completed, but it
+is a preliminary feasibility check, not a scientific result:
+<ul>
+  <li><strong>Mouse gene-attribution arm: not run on real data.</strong> No
+      real gene-expression (transcriptome) data was obtained, because the
+      NeMO mouse-transcriptome collection currently has no license listed
+      and was therefore not downloaded, per this project's own stop
+      condition. No mouse genes have been identified as candidates from
+      real data at any point.</li>
+  <li><strong>Human ephys-only cross-species comparison arm: ran on real
+      data, but on only 4 usable cells.</strong> Of 20 downloaded
+      DANDI:000636 NWB files, only 4 yielded ephys features extractable
+      with the pipeline's current feature-extraction settings (the other
+      16 failed because their stimulus-naming convention isn't recognized
+      by the extractor's default configuration -- an unresolved pipeline
+      limitation, not a statement that those recordings are unusable by
+      any method). With n=4, the resulting mouse-vs-human descriptive
+      numbers are preliminary only and do not demonstrate a reliable
+      species difference.</li>
+  <li><strong>The real mouse cells</strong> came from the Allen Brain Map
+      REST API, Cre-line-filtered as a subclass proxy -- not independently
+      verified as the exact published Gouwens et al. 2020 cohort.</li>
+</ul>
+A separate, clearly synthetic demo fixture (<code>demo_fixture/</code>) was
+also run end-to-end to validate that the pipeline code itself is correct.
+<strong>Its numbers are 100% synthetic and must never be read as biological
+findings</strong> -- they are kept visually and textually separate from the
+real-data numbers throughout this site. See <a href="results.html">Results</a>
+for both, and <a href="reproducibility.html">Reproducibility</a> for exact
+commands.
+</div>
+
+<h2>What this project does not claim</h2>
+<ul>
+  <li>No causal gene &rarr; channel &rarr; excitability proof from
+      observational data.</li>
+  <li>No cross-species gene attribution.</li>
+  <li>No simulation result is validation -- conductance-based models are a
+      plausibility/sensitivity check only.</li>
+  <li>Null, inconclusive, or unstable results are reported, not hidden.</li>
+</ul>
+
+</main>
+<footer>
+  Source: this repository's <code>docs/stage2_research_design.md</code>,
+  <code>data/README.md</code>, and <code>results/demo/summary.json</code>.
+</footer>
+</div>
+<script>
+try {
+  var cta = document.querySelector('.opening .cta');
+  if (cta) {
+    cta.addEventListener('click', function () {
+      try { sessionStorage.setItem('pq_entered', '1'); } catch (e) {}
+    });
+  }
+} catch (e) {}
+</script>
+</body>
+</html>

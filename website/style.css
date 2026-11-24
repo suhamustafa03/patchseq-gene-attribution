@@ -1,0 +1,607 @@
+:root {
+  --bg: #fafafa;
+  --fg: #1a1a1a;
+  --muted: #5b5b5b;
+  --accent: #1f5fa8;
+  --border: #ddd;
+  --card: #fff;
+  --warn-bg: #fff6e0;
+  --warn-border: #e2b53f;
+  --max-width: 880px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+header.site-header {
+  background: var(--fg);
+  color: #fff;
+  padding: 1rem 1.25rem;
+}
+
+header.site-header .inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+}
+
+header.site-header a { color: #fff; text-decoration: none; }
+header.site-header nav { display: flex; flex-wrap: wrap; gap: 1rem; }
+header.site-header nav a { opacity: 0.85; }
+header.site-header nav a:hover { opacity: 1; text-decoration: underline; }
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+}
+
+h1 { font-size: 1.7rem; }
+h2 { font-size: 1.3rem; margin-top: 2.2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+h3 { font-size: 1.05rem; }
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  color: #6b4e00;
+}
+
+.callout {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  margin: 1rem 0;
+}
+
+.callout strong { color: #6b4e00; }
+
+/* Wrapped so a wide table scrolls within its own box instead of
+   pushing the whole page wider than the viewport on mobile. */
+.table-scroll {
+  overflow-x: auto;
+  margin: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th { background: #f0f0f0; }
+
+code, pre {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.88rem;
+}
+
+pre {
+  background: #1a1a1a;
+  color: #e8e8e8;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin: 0.8rem 0;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+
+.stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  text-align: center;
+}
+
+.stat .value { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+.stat .label { font-size: 0.78rem; color: var(--muted); }
+
+a { color: var(--accent); }
+
+footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.result-null { color: #a33; font-weight: 600; }
+.result-ok { color: #2a7a2a; font-weight: 600; }
+
+/* ---- Front-page hero (index.html only) ---- */
+
+.hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2.2rem 1.25rem 0.5rem;
+}
+
+.hero .status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1.1rem;
+}
+
+.badge-good {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: #eaf3ff;
+  border: 1px solid #a9c9ec;
+  color: #184a7a;
+}
+
+.hero h1 {
+  font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+  line-height: 1.25;
+  margin: 0.4rem 0 0.5rem;
+  max-width: 34ch;
+}
+
+.hero .lede {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 54ch;
+  margin: 0 0 1.4rem;
+}
+
+.limit-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.6rem;
+  margin: 0 0 1.6rem;
+}
+
+.limit-strip .limit {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.limit-strip .limit strong {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #6b4e00;
+  margin-bottom: 0.15rem;
+}
+
+/* Diagram */
+
+.diagram-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem 1.2rem 0.6rem;
+  margin: 1.4rem 0 2rem;
+}
+
+.diagram-wrap svg { width: 100%; height: auto; display: block; }
+.diagram-wrap figcaption {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.6rem 0.2rem 0.4rem;
+  text-align: center;
+}
+
+.diagram-wrap .stage-label { font-size: 12px; fill: var(--fg); font-family: inherit; }
+.diagram-wrap .stage-sub { font-size: 10.5px; fill: var(--muted); font-family: inherit; }
+
+.diagram-stage {
+  cursor: default;
+}
+.diagram-stage:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.diagram-stage:focus-visible rect,
+.diagram-stage:focus-visible path,
+.diagram-stage:focus-visible circle,
+.diagram-stage:focus-visible line,
+.diagram-stage:hover rect,
+.diagram-stage:hover path,
+.diagram-stage:hover circle,
+.diagram-stage:hover line {
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+.annotations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.6rem;
+  margin: 0.6rem 0 1rem;
+}
+
+.annotations details {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.8rem;
+  background: var(--card);
+}
+
+.annotations summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.annotations p {
+  font-size: 0.86rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0.1rem;
+}
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.8rem;
+  margin: 0.4rem 0 2rem;
+}
+
+.quick-links a {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  text-decoration: none;
+  color: var(--fg);
+  background: var(--card);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.quick-links a:hover,
+.quick-links a:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.quick-links a strong {
+  display: block;
+  color: var(--accent);
+  margin-bottom: 0.2rem;
+}
+
+.quick-links a span {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quick-links a { transition: none; }
+}
+
+/* ---- Mouse/human species hero illustration ---- */
+
+.status-line {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: #eaf3ff;
+  border: 1px solid #a9c9ec;
+  color: #184a7a;
+  margin-bottom: 1rem;
+}
+
+.species-hero {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem 1.2rem 0.6rem;
+  margin: 1.4rem 0 1.8rem;
+}
+
+.species-hero svg { width: 100%; height: auto; display: block; }
+
+.species-hero figcaption {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.6rem 0.2rem 0.4rem;
+  text-align: center;
+}
+
+.species-hero figcaption strong { color: var(--fg); }
+
+.species-label { font-size: 13px; font-weight: 600; fill: var(--fg); font-family: inherit; }
+.species-sub { font-size: 10.5px; fill: var(--muted); font-family: inherit; }
+.conceptual-tag { font-size: 9.5px; fill: #8a6d00; font-style: italic; font-family: inherit; }
+
+.hero-stage:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.hero-stage:focus-visible .hl,
+.hero-stage:hover .hl {
+  stroke: var(--accent);
+  stroke-width: 2.5;
+}
+
+/* Three-part status path */
+
+.status-path {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0 1.8rem;
+}
+
+.status-path .step {
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+.status-path .step h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.status-path .step p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.status-path .step-done { border-left: 4px solid #2a7a2a; }
+.status-path .step-done h3 { color: #2a7a2a; }
+.status-path .step-synthetic { border-left: 4px solid #8a6d00; }
+.status-path .step-synthetic h3 { color: #8a6d00; }
+.status-path .step-blocked { border-left: 4px solid #a33; }
+.status-path .step-blocked h3 { color: #a33; }
+
+/* Has / has-not shown */
+
+.shown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 0.6rem 0 1.8rem;
+}
+
+.shown-grid > div {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  background: var(--card);
+}
+
+.shown-grid h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.shown-grid ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.86rem;
+}
+
+.shown-grid li { margin-bottom: 0.35rem; }
+
+.shown-has h3 { color: #2a7a2a; }
+.shown-has { border-left: 4px solid #2a7a2a; }
+.shown-has-not h3 { color: #a33; }
+.shown-has-not { border-left: 4px solid #a33; }
+
+/* ---- Opening cinematic screen (index.html only) ---- */
+
+.opening-sr-desc {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Gate: the opening screen is the only thing visible, reachable, or
+   scrollable until the visitor has entered. Two independent mechanisms,
+   either one is enough to reveal the site:
+   1. `:target` -- works with JavaScript off: clicking the CTA on THIS
+      page reveals THIS page's content (per-page, no memory across pages).
+   2. `html.entered` -- a tiny inline head-script adds this class if
+      sessionStorage records a prior entry, so once a visitor has entered
+      anywhere in the site, every other page in the same tab opens
+      straight to its content, no second click needed. If JS or
+      sessionStorage is unavailable, this silently has no effect and
+      mechanism 1 (:target) still works per page -- never a blank/trapped
+      screen either way.
+   Browsers without :has() support simply show the site ungated rather
+   than trapping the visitor, which is the correct fallback. */
+
+.site-wrap { display: none; }
+
+:root:has(#content:target) .opening,
+html.entered .opening { display: none; }
+
+:root:has(#content:target) .site-wrap,
+html.entered .site-wrap { display: block; }
+
+.opening {
+  position: fixed;
+  inset: 0;
+  min-height: 100svh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #141b28 0%, #0b0e15 70%, #080a0f 100%);
+  color: #eef3fa;
+  z-index: 50;
+}
+
+.opening-scene {
+  position: absolute;
+  inset: 0;
+}
+
+.opening-scene svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.opening-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  max-width: 36rem;
+}
+
+.opening-content h1 {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.9rem;
+  color: #fff;
+}
+
+.opening-sub {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: #b7c4d8;
+  margin: 0 0 2.2rem;
+  line-height: 1.6;
+}
+
+.cta {
+  display: inline-block;
+  background: #eef3fa;
+  color: #0b0e15;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.85rem 1.8rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 0 0 rgba(238, 243, 250, 0);
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(238, 243, 250, 0.25);
+}
+
+.cta:focus-visible {
+  outline: 3px solid #5a9bd8;
+  outline-offset: 3px;
+}
+
+/* Scene animation: slow brain glow pulse */
+
+.brain-glow {
+  animation: pulse-glow 5s ease-in-out infinite;
+  transform-origin: center;
+}
+.scene-mouse .brain-glow { animation-delay: 0s; }
+.scene-human .brain-glow { animation-delay: 1.2s; }
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+
+/* Particles drifting along the two upper/lower pathway curves, mouse side */
+
+.particle {
+  offset-rotate: 0deg;
+  animation-duration: 6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.p1 { offset-path: path("M 200 222 C 320 180, 420 180, 450 210"); animation-name: travel; animation-delay: 0s; }
+.p2 { offset-path: path("M 695 210 C 580 180, 480 180, 450 210"); animation-name: travel; animation-delay: 2s; }
+.p3 { offset-path: path("M 200 222 C 320 260, 420 260, 450 230"); animation-name: travel; animation-delay: 4s; }
+
+@keyframes travel {
+  0% { offset-distance: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+.wave-line {
+  stroke-dasharray: 220;
+  animation: wave-shimmer 7s ease-in-out infinite;
+}
+
+@keyframes wave-shimmer {
+  0%, 100% { stroke-dashoffset: 220; opacity: 0.6; }
+  50% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .brain-glow, .particle, .wave-line, .cta {
+    animation: none !important;
+    transition: none !important;
+  }
+  .brain-glow { opacity: 0.85; }
+  .particle { opacity: 0; }
+  .wave-line { stroke-dashoffset: 0; opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+@media (max-width: 600px) {
+  .opening-content h1 { font-size: 2rem; }
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{if(sessionStorage.getItem('pq_entered')==='1'){document.documentElement.classList.add('entered')}}catch(e){}</script>
+<title>Reproducibility | Patch-seq Gene Attribution</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="opening" aria-labelledby="opening-title">
+  <div class="opening-scene" aria-hidden="true">
+    <svg viewBox="0 0 900 420" preserveAspectRatio="xMidYMid meet" focusable="false">
+      <defs>
+        <radialGradient id="glowMouse" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#5a9bd8" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#5a9bd8" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glowHuman" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#8fb8e8" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#8fb8e8" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <g class="scene-figure scene-mouse">
+        <ellipse cx="150" cy="235" rx="95" ry="78" fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle cx="75" cy="160" r="30" fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle cx="205" cy="150" r="33" fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle class="brain-glow" cx="160" cy="222" r="30" fill="url(#glowMouse)"/>
+        <ellipse cx="160" cy="222" rx="42" ry="32" fill="none" stroke="#5a9bd8" stroke-width="1.2" opacity="0.7"/>
+      </g>
+
+      <g class="scene-figure scene-human">
+        <path d="M 700 130 Q 775 122, 792 190 Q 800 230, 778 265 Q 765 290, 735 286 L 728 318 Q 722 330, 708 324 L 702 290 Q 676 278, 673 238 Q 670 180, 700 130 Z"
+          fill="#10151f" stroke="#3a4a63" stroke-width="1.5"/>
+        <circle class="brain-glow" cx="737" cy="210" r="32" fill="url(#glowHuman)"/>
+        <ellipse cx="737" cy="210" rx="44" ry="50" fill="none" stroke="#8fb8e8" stroke-width="1.2" opacity="0.7"/>
+      </g>
+
+      <g class="scene-pathway" fill="none" stroke="#4a6a93" stroke-width="1.3" opacity="0.55">
+        <path d="M 200 222 C 320 180, 420 180, 450 210" />
+        <path d="M 200 222 C 320 260, 420 260, 450 230" />
+        <path d="M 695 210 C 580 180, 480 180, 450 210" />
+        <path d="M 695 210 C 580 250, 480 250, 450 230" />
+      </g>
+
+      <g class="scene-particles">
+        <circle class="particle p1" r="3" fill="#bcd6f2"/>
+        <circle class="particle p2" r="3" fill="#bcd6f2"/>
+        <circle class="particle p3" r="3" fill="#bcd6f2"/>
+      </g>
+
+      <g class="scene-wave">
+        <polyline class="wave-line" points="400,222 415,222 420,200 428,245 434,180 440,222 460,222 466,195 472,250 478,222 500,222"
+          fill="none" stroke="#bcd6f2" stroke-width="2"/>
+      </g>
+    </svg>
+  </div>
+
+  <p class="opening-sr-desc">
+    An atmospheric, slowly animated scene: a mouse silhouette on the left and a
+    human silhouette on the right, each with a softly glowing brain region,
+    connected by faint neural-pathway lines. Small points of light drift along
+    these lines toward the center, where they resolve into a simple electrical
+    waveform. This is a conceptual illustration of the project's guiding
+    question -- it does not depict any measured gene, signal, or result.
+  </p>
+
+  <div class="opening-content">
+    <h1 id="opening-title">From genes to firing</h1>
+    <p class="opening-sub">An exploratory feasibility study of interneurons, gene expression, and electrical activity &mdash; across mouse and human.</p>
+    <a class="cta" href="#content">Look into the project</a>
+  </div>
+</section>
+
+<div class="site-wrap">
+<header class="site-header">
+  <div class="inner">
+    <a href="index.html"><strong>Patch-seq Gene Attribution</strong></a>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="methods.html">Methods</a>
+      <a href="data.html">Data &amp; Licensing</a>
+      <a href="results.html">Results</a>
+      <a href="limitations.html">Limitations</a>
+      <a href="reproducibility.html">Reproducibility</a>
+      <a href="references.html">References</a>
+    </nav>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+
+<h1>Reproducibility</h1>
+
+<p>The commands below reproduce the <strong>synthetic demo fixture</strong>
+run, with no download required.</p>
+
+<pre>cd project/
+python3 -m venv .venv &amp;&amp; source .venv/bin/activate
+pip install -r requirements.txt   # core deps: numpy, pandas, scikit-learn, pytest
+python3 demo_fixture/generate_demo_fixture.py
+pytest -q
+python3 -m patchseq_genes.run_pipeline --input demo_fixture --output results/demo</pre>
+
+<p>Optional: run the Brian2 biophysical plausibility screen too
+(<code>pip install brian2</code> first):</p>
+<pre>python3 -m patchseq_genes.run_pipeline --input demo_fixture --output results/demo --run-simulation</pre>
+
+<h2>Real-data run (2026-11-23): exploratory feasibility check, already executed</h2>
+<p>
+A real, non-synthetic data pull and partial pipeline run <strong>has
+already been executed</strong> -- this is not a to-do. Full provenance
+(source URLs, dataset versions, download date, file counts, checksums) is
+recorded in <code>docs/DATA_MANIFEST.md</code>; what ran and what was
+blocked is summarized in <code>docs/PROGRESS_REPORT.md</code>; the code
+path used is <code>src/patchseq_genes/real_data_adapter.py</code>, which
+calls the same unmodified <code>qc.py</code> / <code>features.py</code> /
+<code>confounders.py</code> / <code>cv.py</code> functions as the demo
+run; outputs are in <code>results/real/</code> (<code>summary.json</code>,
+<code>cross_species_ephys_table.csv</code>,
+<code>cross_species_confounders.csv</code>), kept separate from
+<code>results/demo/</code>.
+</p>
+<div class="callout">
+<strong>What this run is -- and is not.</strong> It is an exploratory
+feasibility check, not a completed gene-attribution study:
+<ul>
+  <li>Real human ephys features were extracted from only
+      <strong>4 of 20</strong> downloaded DANDI:000636 NWB files (the
+      other 16 failed on an unrecognized stimulus-naming convention -- an
+      unresolved pipeline limitation, not a claim those recordings are
+      unusable). With n=4, the result is preliminary and
+      <strong>does not demonstrate a reliable species difference</strong>.</li>
+  <li>The real mouse cells are a <strong>Cre-line-filtered proxy</strong>
+      pulled from the Allen Brain Map REST API, not a verified match to
+      the published Gouwens et al. 2020 Patch-seq cohort.</li>
+  <li>The real mouse <strong>gene-attribution analysis was not run</strong>:
+      the NeMO mouse-transcriptome collection (<code>dat-m2kd56v</code>)
+      currently shows no license listed, so it was not downloaded, per
+      this project's own license stop-condition. No mouse genes have been
+      identified as candidates from real data.</li>
+  <li>Synthetic demo results (<code>results/demo/</code>) remain entirely
+      separate from these real-data results and must never be read as
+      biological findings.</li>
+</ul>
+</div>
+<p>This real-data run is not independently re-runnable from a single
+command in this repository (it required interactively enumerating and
+selecting a subset of DANDI:000636 assets and querying the Allen Brain
+Map REST API as a documented <code>allensdk</code> substitute); see
+<code>docs/DATA_MANIFEST.md</code> for the exact commands actually used.</p>
+
+<h2>Repository layout</h2>
+<pre>project/
+├── data/                         download scripts + license notes (no raw data committed)
+│   ├── README.md
+│   ├── download_mouse_gouwens.py
+│   └── download_human_dandi000636.py
+├── demo_fixture/                 small, clearly synthetic fixture
+│   ├── generate_demo_fixture.py
+│   ├── README.md
+│   ├── cells.csv
+│   ├── ephys_features.csv
+│   └── gene_expression.csv
+├── src/patchseq_genes/           qc, features, confounders, cv, attribution,
+│                                 stability, simulation, run_pipeline
+├── tests/                        pytest suite (schema, leakage, negative
+│                                 control, end-to-end)
+├── results/demo/                 actual output of the demo run
+├── website/                      this static site
+├── docs/stage2_research_design.md
+└── requirements.txt</pre>
+
+</main>
+<footer>
+  Source: this repository's own layout and the commands used to produce
+  <code>results/demo/summary.json</code>.
+</footer>
+</div>
+<script>
+try {
+  var cta = document.querySelector('.opening .cta');
+  if (cta) {
+    cta.addEventListener('click', function () {
+      try { sessionStorage.setItem('pq_entered', '1'); } catch (e) {}
+    });
+  }
+} catch (e) {}
+</script>
+</body>
+</html>
